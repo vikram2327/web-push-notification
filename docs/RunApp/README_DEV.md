@@ -7,7 +7,7 @@
     2. ### Run Container Using Image
         - powershell
             ```
-            docker run --rm -v ${PWD}:/app -v /app/node_modules -p 127.0.0.1:8101:3000 -e CHOKIDAR_USEPOLLING=true --name webpush_notification-dev webpush_notification:dev
+            docker run -d --rm -v ${PWD}:/app -v /app/node_modules -p 127.0.0.1:8101:3000 -e CHOKIDAR_USEPOLLING=true --name webpush_notification-dev webpush_notification:dev
             ```
         - cmd
             ```

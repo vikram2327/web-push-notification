@@ -15,13 +15,13 @@ function App(props) {
    const [notification,setNotification] = useState('');
 
   useEffect(()=>{
-    setNotification("Vikram");
-    // try {
-      const ws = new WebSocket("ws://localhost:3000/");
-      ws.onmessage = ({data}) => {
-        this.message =  data;
-        //this.showAlert();
-      }
+    // setNotification("Vikram");
+    // // try {
+    //   const ws = new WebSocket("ws://localhost:3000/");
+    //   ws.onmessage = ({data}) => {
+    //     this.message =  data;
+    //     //this.showAlert();
+    //   }
     // } catch(err) {
     //   console.log(err);
     // }

@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import '../../App.css';
 import io from 'socket.io-client';
 
-
 import Echo from 'laravel-echo';
-// import socketio from 'socket.io-client';
 
 const hostName="http://localhost:6001";
 
-// window.Echo.private('marvel')
-
 const echo = new Echo({
-  host: 'http://127.0.0.1:6001',
+  host: hostName,
   broadcaster: 'socket.io',
-  // client: socketio,
   client: io,
   auth: {
     headers: {
@@ -27,25 +21,11 @@ formData:{
   app:'1234560'
 }
 });
+ 
 
-// echo
-//   // .channel('marvel')
-//   .private('marvel')
-//   .listen('.message', ev => {
-//     console.debug(ev)
-//     console.debug(ev.title)
-//   });
-
-  
-
-const socket = io(hostName);
 
 function RecieveMessage() {
-  // const socket = io(hostName);
-
-  // console.debug("Socket Obj",echo)
-  // console.debug("Socket Obj COnnected Statuss",socket.connected)
-  // const [isConnected, setIsConnected] = useState(socket.connected);
+ 
   const [isConnected, setIsConnected] = useState();
   const [lastMessage, setLastMessage] = useState(null);
   const [messageArray, setMessageArray] = useState([]);
@@ -61,39 +41,8 @@ function RecieveMessage() {
     setMessageArray([...messageArray,ev.title]);
   });
 
-//   echo
-//   // .channel('marvel')
-//   .private('marvel')
-// // .channel('private-marvel')
-//   .listen('.message', ev => {
-//     console.debug(ev)
-//     console.debug(ev.message.text)
-//   });
-
   const [count,setCount]=useState(0);
   
-  
-//   useEffect(() => {
-//     setTimeout(()=>{
-//         setCount(count+1)
-
-// // echo
-// // .channel('marvel')
-// // .listen('.message', ev => {
-// //   console.debug(ev)
-// //   console.debug(ev.message.text)
-// // });
-// // console.debug("hi",echo)
-//     }, 1000);
-//     // setTimeout((count+1));
-//   });
-
-  const sendMessage = () => {
-    // socket.emit('hello!');
-    // socket.emit('message');
-    // socket.to("private-marvel").emit('hello!');
-    // console.debug("On Send Message",socket);
-  }
 
   return (
     <div className="container-fluid">
@@ -101,8 +50,8 @@ function RecieveMessage() {
             <div className="col-md-6">
                 <header className="App-header">
                     <p>Connected: { '' + isConnected }</p>
-                    <p>Last message: { lastMessage || '-' }</p>
-                    <button onClick={ sendMessage }>Say hello!</button>
+                    <p>Last message: { lastMessage? <u>{lastMessage}</u>: '_________' }</p>
+                    {/* <button onClick={ sendMessage }>Say hello!</button> */}
                 </header>
             </div>
             <div className="col-md-6">
